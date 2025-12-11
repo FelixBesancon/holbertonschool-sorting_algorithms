@@ -32,7 +32,7 @@ void lotumo_rec(int *array, size_t low, size_t high, size_t size)
 			last_low++;
 		}
 	}
-	if (index_pivot != last_low)
+	if (index_pivot != last_low && array[index_pivot] != array[last_low])
 	{
 		swap = array[index_pivot];
 		array[index_pivot] = array[last_low];
@@ -40,9 +40,10 @@ void lotumo_rec(int *array, size_t low, size_t high, size_t size)
 		print_array(array, size);
 	}
 	index_pivot = last_low;
-	if (index_pivot > 0)
+	if (index_pivot > low)
 		lotumo_rec(array, low, index_pivot - 1, size);
-	lotumo_rec(array, index_pivot + 1, high, size);
+	if (index_pivot < high)
+		lotumo_rec(array, index_pivot + 1, high, size);
 }
 
 /**
